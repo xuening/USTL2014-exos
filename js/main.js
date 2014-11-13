@@ -19,25 +19,40 @@
  * Vous avez 2h :)
  *
  */
+var app = {};
+app.model = {
+    taskListName: "nom de la liste de taches",
+    taskList: [
+        {
+            title: "titre tache1",
+            done: false
+        },
+        {
+            title: "titre tache2",
+            done: false
+        }
+    ]
+};
 
-$(document).ready(function(){
 
-    $("#create-task").on("change",function(){
+$(document).ready(function () {
+
+    $("#create-task").on("change", function () {
 
         var task = $("<li class='task-list__item'></li>");
 
-        var content = $("<div class='item-content'>"+$(this).val()+"</div>");
+        var content = $("<div class='item-content'>" + $(this).val() + "</div>");
         var chkbx = $("<input type='checkbox' class='done-chkbx'>");
         var button = $("<button class='suppress-btn'>⤬</button>");
 
         task.append(content);
 
-        chkbx.on("change",function(){
+        chkbx.on("change", function () {
             $(this).parent("li").toggleClass("task-list__item--done");
         });
         task.prepend(chkbx);
 
-        button.on("click",function(){
+        button.on("click", function () {
             $(this).parent("li").remove();
         });
         task.append(button);
